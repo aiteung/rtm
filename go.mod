@@ -6,7 +6,8 @@ require (
 	github.com/aiteung/atdb v0.0.13
 	github.com/aiteung/musik v0.0.5
 	github.com/gofiber/fiber/v2 v2.48.0
-	github.com/rofinafiin/iteung v0.0.0-20230412134954-ca19609be24a
+	github.com/harisriyoni3/rtmpackage v0.0.1
+	github.com/rofinafiin/rtm-package v0.0.1
 	github.com/whatsauth/whatsauth v0.2.5
 )
 
@@ -19,7 +20,6 @@ require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/fasthttp/websocket v1.5.3 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
-	github.com/gocroot/kampus v0.0.2 // indirect
 	github.com/gofiber/websocket/v2 v2.2.1 // indirect
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
@@ -27,7 +27,6 @@ require (
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
-	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
@@ -35,9 +34,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/microsoft/go-mssqldb v1.0.0 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-	github.com/rofinafiin/rtm-package v0.0.1 // indirect
 	github.com/savsgio/gotils v0.0.0-20230208104028-c358bd845dee // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.48.0 // indirect

@@ -2,10 +2,12 @@ package controller
 
 import (
 	"fmt"
-	"github.com/gofiber/fiber/v2"
-	rtpkg "github.com/rofinafiin/rtm-package"
 	"net/http"
 	"rtm/config"
+
+	"github.com/gofiber/fiber/v2"
+	job "github.com/harisriyoni3/rtmpackage"
+	rtpkg "github.com/rofinafiin/rtm-package"
 )
 
 var usercol = "data_user"
@@ -60,6 +62,27 @@ func InsertData(c *fiber.Ctx) error {
 	return c.JSON(map[string]interface{}{
 		"status":      http.StatusOK,
 		"message":     "Data berhasil disimpan.",
+		"inserted_id": Inserted,
+	})
+}
+
+func InsertDataJob(c *fiber.Ctx) error {
+	database := config.MongoConn
+	var job job.Job
+	if err := c.BodyParser(&job); err != nil {
+		return err
+	}
+	Inserted := job.InsertDataJob(database,
+		job.ID,
+		job.Job_title,
+		job.Deskripsi,
+		job.Deadline,
+		job.Priority,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data Job berhasil disimpan.",
 		"inserted_id": Inserted,
 	})
 }
