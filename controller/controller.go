@@ -163,3 +163,46 @@ func DeleteDataJobtitle(c *fiber.Ctx) error {
 	data := jobdesk.DeleteDataJobtitle(hp, config.MongoConn, "DeleteDataJob")
 	return c.JSON(data)
 }
+
+// ACCOUNTS
+func InsertDataAccounts(c *fiber.Ctx) error {
+	database := config.MongoConn
+	var accounts accpkg.Accounts
+	if err := c.BodyParser(&accounts); err != nil {
+		return err
+	}
+	Inserted := accpkg.InsertDataAccounts(database,
+		accounts.Nama,
+		accounts.Email,
+		accounts.Sosial,
+		accounts.Perusahaan,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data Accounts berhasil disimpan.",
+		"inserted_id": Inserted,
+	})
+}
+func GetDataAccounts(c *fiber.Ctx) error {
+	hp := c.Params("perusahaan")
+	data := accpkg.GetDataAccounts(hp, config.MongoConn, "data_accounts")
+	fmt.Println(data)
+	return c.JSON(data)
+}
+func GetDataNama(c *fiber.Ctx) error {
+	hp := c.Params("nama")
+	data := accpkg.GetDataNama(hp, config.MongoConn, "data_accounts")
+	fmt.Println(data)
+	return c.JSON(data)
+}
+func DeleteDataAccounts(c *fiber.Ctx) error {
+	hp := c.Params("perusahaan")
+	data := accpkg.DeleteDataAccounts(hp, config.MongoConn, "DeleteDataAccounts")
+	return c.JSON(data)
+}
+func DeleteDataNama(c *fiber.Ctx) error {
+	hp := c.Params("nama")
+	data := accpkg.DeleteDataAccounts(hp, config.MongoConn, "DeleteDataAccounts")
+	return c.JSON(data)
+}

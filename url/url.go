@@ -23,4 +23,9 @@ func Web(page *fiber.App) {
 	page.Get("/job/get/datajobtitle", controller.GetDataJobtitle)
 	page.Delete("/job/delete/datajob", controller.DeleteDataJob)
 	page.Delete("/job/delete/datajobtitle", controller.DeleteDataJobtitle)
+	page.Post("/accounts/insert", controller.InsertDataAccounts)
+	page.Get("/accounts/get/dataaccounts", controller.GetDataAccounts)
+	page.Get("/accounts/get/datanama", controller.GetDataNama)
+	page.Delete("/accounts/delete/dataaccounts", controller.DeleteDataAccounts)
+	page.Delete("/accounts/delete/datanama", controller.DeleteDataNama)
 }
