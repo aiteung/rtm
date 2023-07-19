@@ -6,7 +6,7 @@ import (
 	"rtm/config"
 
 	"github.com/gofiber/fiber/v2"
-	job "github.com/harisriyoni3/rtmpackage"
+	jobdesk "github.com/harisriyoni3/rtmpackage"
 	rtpkg "github.com/rofinafiin/rtm-package"
 )
 
@@ -68,12 +68,11 @@ func InsertData(c *fiber.Ctx) error {
 
 func InsertDataJob(c *fiber.Ctx) error {
 	database := config.MongoConn
-	var job job.Job
+	var job jobdesk.Job
 	if err := c.BodyParser(&job); err != nil {
 		return err
 	}
-	Inserted := job.InsertDataJob(database,
-		job.ID,
+	Inserted := jobdesk.InsertDataJob(database,
 		job.Job_title,
 		job.Deskripsi,
 		job.Deadline,
