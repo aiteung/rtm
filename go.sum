@@ -61,6 +61,8 @@ github.com/gorilla/websocket v1.5.0/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/ad
 github.com/harisriyoni3/rtmpackage v0.0.3 h1:XfEaRWv5mGwZDf6o88X/anraH0aOiDDa0zyGsBmiuYI=
 github.com/harisriyoni3/rtmpackage v0.0.3/go.mod h1:uXvqyuIsiZrf4Uk4ID6GAJZA+OKsKFhmr/GVZY8f4K0=
 github.com/hashicorp/go-uuid v1.0.2/go.mod h1:6SBZvOh/SIDV7/2o3Jml5SYk/TvGqwFJ/bN7x4byOro=
+github.com/jasminemutiara03/rtmtugas v0.0.2 h1:kKEq6FkTaT97+yBUXMOYyLdL55j9NMV9HwrbMBiE8W0=
+github.com/jasminemutiara03/rtmtugas v0.0.2/go.mod h1:hdofciqkj0jwtZ/uxZa9Qh4cxa5SFV1Bm19Q8QwjIUM=
 github.com/jcmturner/aescts/v2 v2.0.0/go.mod h1:AiaICIRyfYg35RUkr8yESTqvSy7csK90qZ5xfvvsoNs=
 github.com/jcmturner/dnsutils/v2 v2.0.0/go.mod h1:b0TnjGOvI/n42bZa+hmXL+kFJZsFT7G4t3HTlQ184QM=
 github.com/jcmturner/gofork v1.0.0/go.mod h1:MK8+TM0La+2rjBD4jE12Kj1pCCxK7d2LK/UM3ncEo0o=
