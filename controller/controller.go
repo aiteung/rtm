@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"rtm/config"
 
+	lpkg "github.com/GilarYa/packagertm"
 	pkg "github.com/MSyahidAlFajri/packagertm"
 	"github.com/gofiber/fiber/v2"
 	jobdesk "github.com/harisriyoni3/rtmpackage"
@@ -13,6 +14,7 @@ import (
 
 var usercol = "data_user"
 var datartm = "data_rtm"
+var datajob = "data_DataCS"
 
 //func WsWhatsAuthQR(c *websocket.Conn) {
 //	whatsauth.RunSocket(c, config.PublicKey, config.Usertables[:], config.Ulbimariaconn)
@@ -162,4 +164,48 @@ func DeleteDataJobtitle(c *fiber.Ctx) error {
 	hp := c.Params("job_title")
 	data := jobdesk.DeleteDataJobtitle(hp, config.MongoConn, "DeleteDataJob")
 	return c.JSON(data)
+}
+
+// CS
+func GetDataNama(c *fiber.Ctx) error {
+	nama := "Gilar"
+	getstats := lpkg.GetDataNama(nama, config.MongoConn, "data_DataCS")
+	fmt.Println(getstats)
+	return c.JSON(getstats)
+}
+func GetDataNegara(c *fiber.Ctx) error {
+	hp := c.Params("negara")
+	data := lpkg.GetDataNegara(hp, config.MongoConn, "data_DataCS")
+	fmt.Println(data)
+	return c.JSON(data)
+}
+func DeleteDataNama(c *fiber.Ctx) error {
+	hp := c.Params("nama")
+	data := lpkg.DeleteDataNama(hp, config.MongoConn, "data_DataCS")
+	return c.JSON(data)
+}
+func DeleteDataNegara(c *fiber.Ctx) error {
+	hp := c.Params("negara")
+	data := lpkg.DeleteDataNegara(hp, config.MongoConn, "data_DataCS")
+	return c.JSON(data)
+}
+func InsertDataCS(c *fiber.Ctx) error {
+	database := config.MongoConn
+	var tambah lpkg.DataCS
+	if err := c.BodyParser(&tambah); err != nil {
+		return err
+	}
+	Inserted := lpkg.InsertDataCS(database,
+		tambah.Nama,
+		tambah.Email,
+		tambah.Nohp,
+		tambah.Negara,
+		tambah.Desc,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data berhasil Tersimpan.",
+		"inserted_id": Inserted,
+	})
 }

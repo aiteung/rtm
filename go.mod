@@ -3,6 +3,7 @@ module rtm
 go 1.20
 
 require (
+	github.com/GilarYa/packagertm v0.0.0-20230720021928-47b7041a6496
 	github.com/MSyahidAlFajri/packagertm v0.0.3
 	github.com/aiteung/atdb v0.0.13
 	github.com/aiteung/musik v0.0.5
@@ -28,7 +29,7 @@ require (
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
-	github.com/klauspost/compress v1.16.7 // indirect
+	github.com/klauspost/compress v1.16.5 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
@@ -48,9 +49,9 @@ require (
 	go.mau.fi/libsignal v0.1.0 // indirect
 	go.mau.fi/whatsmeow v0.0.0-20230610124725-5dd0baf43eda // indirect
 	go.mongodb.org/mongo-driver v1.12.0 // indirect
-	golang.org/x/crypto v0.11.0 // indirect
-	golang.org/x/sync v0.3.0 // indirect
+	golang.org/x/crypto v0.9.0 // indirect
+	golang.org/x/sync v0.2.0 // indirect
 	golang.org/x/sys v0.10.0 // indirect
-	golang.org/x/text v0.11.0 // indirect
+	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 )
