@@ -28,4 +28,9 @@ func Web(page *fiber.App) {
 	page.Get("/accounts/get/datanama", controller.GetDataNama)
 	page.Delete("/accounts/delete/dataaccounts", controller.DeleteDataAccounts)
 	page.Delete("/accounts/delete/datanama", controller.DeleteDataNama)
+	page.Get("/cs/get/datanamacs", controller.GetDataNamacs)
+	page.Get("/cs/get/datanegaracs", controller.GetDataNegaracs)
+	page.Delete("/cs/delete/datanamacs", controller.DeleteDataNamacs)
+	page.Delete("/cs/delete/datanegaracs", controller.DeleteDataNegaracs)
+	page.Post("/cs/insert", controller.InsertDataCS)
 }
