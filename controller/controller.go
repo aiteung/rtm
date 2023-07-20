@@ -9,6 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	jobdesk "github.com/harisriyoni3/rtmpackage"
 	rtpkg "github.com/rofinafiin/rtm-package"
+	agd "github.com/gabyzanna/rtmbackendbel"
 )
 
 var usercol = "data_user"
@@ -161,5 +162,56 @@ func DeleteDataJob(c *fiber.Ctx) error {
 func DeleteDataJobtitle(c *fiber.Ctx) error {
 	hp := c.Params("job_title")
 	data := jobdesk.DeleteDataJobtitle(hp, config.MongoConn, "DeleteDataJob")
+	return c.JSON(data)
+}
+
+//agenda
+func InsertAgendabel(c *fiber.Ctx) error {
+	var rtmdb agd.Agendabel
+	if err := c.BodyParser(&rtmdb); err != nil {
+		return err
+	}
+	Inserted := agd.InsertAgendabel(
+		rtmdb.Topik,
+		rtmdb.Hasil,
+		rtmdb.RencanaPerbaikan,
+		rtmdb.PenanggungJawab,
+		rtmdb.TargetSelesai,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data Job berhasil disimpan.",
+		"inserted_id": Inserted,
+	})
+}
+
+func InsertPenjawab(c *fiber.Ctx) error {
+	var jawab agd.Penjawab
+	if err := c.BodyParser(&jawab); err != nil {
+		return err
+	}
+	Inserted := agd.InsertPenjawab(
+		jawab.Nama,
+		jawab.Divisi,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data Job berhasil disimpan.",
+		"inserted_id": Inserted,
+	})
+}
+func GetDataAgendabel(c *fiber.Ctx) error {
+	targetselesai := c.Params("targetselesai")
+	data := agd.GetDataAgendabel(targetselesai)
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func GetDataPenjawab(c *fiber.Ctx) error {
+	divisi := c.Params("divisi")
+	data := agd.GetDataPenjawab(divisi)
+	fmt.Println(data)
 	return c.JSON(data)
 }

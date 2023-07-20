@@ -6,6 +6,7 @@ require (
 	github.com/MSyahidAlFajri/packagertm v0.0.3
 	github.com/aiteung/atdb v0.0.13
 	github.com/aiteung/musik v0.0.5
+	github.com/gabyzanna/rtmbackendbel v0.0.1
 	github.com/gofiber/fiber/v2 v2.48.0
 	github.com/harisriyoni3/rtmpackage v0.0.3
 	github.com/rofinafiin/rtm-package v0.0.1
