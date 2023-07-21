@@ -15,6 +15,7 @@ require (
 require (
 	aidanwoods.dev/go-paseto v1.3.0 // indirect
 	filippo.io/edwards25519 v1.0.0 // indirect
+	github.com/GilarYa/packagertm v0.0.0-20230720111744-c03416b84cd2 // indirect
 	github.com/aiteung/atapi v0.0.13 // indirect
 	github.com/aiteung/atmessage v0.0.19 // indirect
 	github.com/aiteung/atmodel v0.0.4 // indirect
