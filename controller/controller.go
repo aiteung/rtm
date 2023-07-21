@@ -11,6 +11,8 @@ import (
 	jobdesk "github.com/harisriyoni3/rtmpackage"
 	rtpkg "github.com/rofinafiin/rtm-package"
 	"go.mongodb.org/mongo-driver/bson"
+	accpkg "github.com/daffaaudyapramana/packagertm"
+	lpkg "github.com/GilarYa/packagertm"
 )
 
 var usercol = "data_user"
@@ -253,3 +255,48 @@ func GetDataPosisi(nama_posisi string) (data []Posisi) {
 	}
 	return
 }
+=======
+// CS
+func GetDataNamacs(c *fiber.Ctx) error {
+	namacs := "Gilar"
+	getstats := lpkg.GetDataNamacs(namacs, config.MongoConn, "data_DataCS")
+	fmt.Println(getstats)
+	return c.JSON(getstats)
+}
+func GetDataNegaracs(c *fiber.Ctx) error {
+	hpcs := c.Params("negaracs")
+	data := lpkg.GetDataNegaracs(hpcs, config.MongoConn, "data_DataCS")
+	fmt.Println(data)
+	return c.JSON(data)
+}
+func DeleteDataNamacs(c *fiber.Ctx) error {
+	hpcs := c.Params("namacs")
+	data := lpkg.DeleteDataNamacs(hpcs, config.MongoConn, "data_DataCS")
+	return c.JSON(data)
+}
+func DeleteDataNegaracs(c *fiber.Ctx) error {
+	hp := c.Params("negara")
+	data := lpkg.DeleteDataNegaracs(hp, config.MongoConn, "data_DataCS")
+	return c.JSON(data)
+}
+func InsertDataCS(c *fiber.Ctx) error {
+	database := config.MongoConn
+	var tambah lpkg.DataCS
+	if err := c.BodyParser(&tambah); err != nil {
+		return err
+	}
+	Inserted := lpkg.InsertDataCS(database,
+		tambah.Namacs,
+		tambah.Emailcs,
+		tambah.Nohpcs,
+		tambah.Negaracs,
+		tambah.Desccs,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data berhasil Tersimpan.",
+		"inserted_id": Inserted,
+	})
+}
+

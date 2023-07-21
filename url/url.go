@@ -32,4 +32,9 @@ func Web(page *fiber.App) {
 	page.Get("/posisi", controller.GetDataPosisi)
 	page.Post("/insertabsensi", controller.InsertAbsensi)
 	page.Post("/insertPosisi", controller.InsertPosisi)
+	page.Get("/cs/get/datanamacs", controller.GetDataNamacs)
+	page.Get("/cs/get/datanegaracs", controller.GetDataNegaracs)
+	page.Delete("/cs/delete/datanamacs", controller.DeleteDataNamacs)
+	page.Delete("/cs/delete/datanegaracs", controller.DeleteDataNegaracs)
+	page.Post("/cs/insert", controller.InsertDataCS)
 }
