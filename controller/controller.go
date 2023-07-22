@@ -447,52 +447,41 @@ func DeleteDataListJobdeskDeadline(c *fiber.Ctx) error {
 }
 
 //tamu
-func Inserttamu(nama string, email string, kota string, status string) (InsertedID interface{}) {
-	var datatamu Tamu
-	datatamu.Nama = nama
-	datatamu.Email = email
-	datatamu.Kota = kota
-	datatamu.Status = status
-	return InsertOneDoc("dblisttamu", "datatamu", datatamu)
+func Inserttamu(c *fiber.Ctx) error {
+	var datatamu tamu.Tamu
+	if err := c.BodyParser(&datatamu); err != nil {
+		return err
+	}
+	Inserted := tamu.Inserttamu(
+	datatamu.Nama,
+	datatamu.Email,
+	datatamu.Kota,
+	datatamu.Status,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data tamu berhasil disimpan.",
+		"inserted_id": Inserted,
+	})
 }
-func GetDataNama(nam string) (data []Tamu) {
-	user := MongoConnect("dblisttamu").Collection("datatamu")
-	filter := bson.M{"nama": nam}
-	cursor, err := user.Find(context.TODO(), filter)
-	if err != nil {
-		fmt.Println("GetDataNama :", err)
-	}
-	err = cursor.All(context.TODO(), &data)
-	if err != nil {
-		fmt.Println(err)
-	}
-	return
-}
-
-func GetDataStatus(tus string) (data []Tamu) {
-	user1 := MongoConnect("dblisttamu").Collection("datatamu")
-	filter := bson.M{"status": tus}
-	cursor, err := user1.Find(context.TODO(), filter)
-	if err != nil {
-		fmt.Println("GetDataStatus :", err)
-	}
-	err = cursor.All(context.TODO(), &data)
-	if err != nil {
-		fmt.Println(err)
-	}
-	return
+func GetDatatam(c *fiber.Ctx) error {
+	nama := c.Params("nama")
+	data := monitor.GetDatatam(nama)
+	fmt.Println(data)
+	return c.JSON(data)
 }
 
-func GetDataKota(kot string) (data []Tamu) {
-	user1 := MongoConnect("dblisttamu").Collection("datatamu")
-	filter := bson.M{"kota": kot}
-	cursor, err := user1.Find(context.TODO(), filter)
-	if err != nil {
-		fmt.Println("GetDataKota :", err)
-	}
-	err = cursor.All(context.TODO(), &data)
-	if err != nil {
-		fmt.Println(err)
-	}
-	return
+func GetDataStatus(c *fiber.Ctx) error {
+	status := c.Params("status")
+	data := monitor.GetDataStatus(status)
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func GetDataKota(c *fiber.Ctx) error {
+	kota := c.Params("kota")
+	data := monitor.GetDataKota(kota)
+	fmt.Println(data)
+	return c.JSON(data)
 }
