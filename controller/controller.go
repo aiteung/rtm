@@ -13,6 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	accpkg "github.com/daffaaudyapramana/packagertm"
 	lpkg "github.com/GilarYa/packagertm"
+	monitor "github.com/xshazks/rtmbdsaw"
 )
 
 var usercol = "data_user"
@@ -255,7 +256,7 @@ func GetDataPosisi(nama_posisi string) (data []Posisi) {
 	}
 	return
 }
-=======
+
 // CS
 func GetDataNamacs(c *fiber.Ctx) error {
 	namacs := "Gilar"
@@ -299,4 +300,43 @@ func InsertDataCS(c *fiber.Ctx) error {
 		"inserted_id": Inserted,
 	})
 }
+// monitoring
+func Insertmonitor(c *fiber.Ctx) error {
+	var rtmdb monitor.Monitor
+	if err := c.BodyParser(&rtmdb); err != nil {
+		return err
+	}
+	Inserted := monitor.Insertmonitor(
+		rtmdb.Proker,
+		rtmdb.Status,
+		rtmdb.About,
+		rtmdb.Karyawan,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data Job berhasil disimpan.",
+		"inserted_id": Inserted,
+	})
+}
 
+func GetDatamonitor(c *fiber.Ctx) error {
+	status := c.Params("status")
+	data := monitor.GetDatamonitor(status)
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func GetDatakaryawan(c *fiber.Ctx) error {
+	karyawan := c.Params("karyawan")
+	data := monitor.GetDatakaryawan(karyawan)
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func GetDataproker(c *fiber.Ctx) error {
+	proker := c.Params("proker")
+	data := monitor.GetDataproker(proker)
+	fmt.Println(data)
+	return c.JSON(data)
+}

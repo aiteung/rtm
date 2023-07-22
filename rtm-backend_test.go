@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"rtm/controller"
+	// "rtm/controller"
 	"testing"
 )
 
@@ -13,10 +13,10 @@ func TestPrintenv(t *testing.T) {
 	fmt.Println(MariaStringAkademik)
 }
 
-func TestInsertdata(t *testing.T) {
-	id := "cc2"
-	nama := "rofiganteng"
-	email := "cth@gmail.com"
-	hp := "000000"
-	controller.InsertData()
-}
+// func TestInsertdata(t *testing.T) {
+// 	id := "cc2"
+// 	nama := "rofiganteng"
+// 	email := "cth@gmail.com"
+// 	hp := "000000"
+// 	controller.InsertData()
+// }
