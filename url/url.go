@@ -45,4 +45,9 @@ func Web(page *fiber.App) {
 	page.Post("/insertpenjawab", controller.InsertPenjawab)
 	page.Get("/agenda", controller.GetDataAgendabel)
 	page.Get("/penjawab", controller.GetDataPenjawab)
+	page.Post("/listjd/insertdatalistjd", controller.InsertDataListJobdesk)
+	page.Get("/listjd/get/datalistjddeskripsi", controller.GetDataListJobdeskDeskripsi)
+	page.Get("/listjd/get/datalistjddeadline", controller.GetDataListJobdeskDeadline)
+	page.Delete("/listjd/delete/datalistjddeskripsi", controller.DeleteDataListJobdeskDeskripsi)
+	page.Delete("/listjd/delete/datalistjddeadline", controller.DeleteDataListJobdeskDeadline)
 }
