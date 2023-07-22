@@ -16,6 +16,7 @@ import (
 	monitor "github.com/xshazks/rtmbdsaw"
 	agd "github.com/gabyzanna/rtmbackendbel"
 	listjdk "github.com/FarhanRizkiM/rtmpackage"
+	tamu "github.com/Ardivadiva/cobafunc"
 )
 
 var usercol = "data_user"
@@ -441,6 +442,46 @@ func DeleteDataListJobdeskDeskripsi(c *fiber.Ctx) error {
 func DeleteDataListJobdeskDeadline(c *fiber.Ctx) error {
 	hp := c.Params("deadline_lj")
 	data := listjdk.DeleteDataListJobdeskDeadline(hp, config.MongoConn, "Deletedatalistdeadline")
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+//tamu
+func Inserttamu(c *fiber.Ctx) error {
+	var datatamu tamu.Tamu
+	if err := c.BodyParser(&datatamu); err != nil {
+		return err
+	}
+	Inserted := tamu.Inserttamu(
+	datatamu.Nama,
+	datatamu.Email,
+	datatamu.Kota,
+	datatamu.Status,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data tamu berhasil disimpan.",
+		"inserted_id": Inserted,
+	})
+}
+func GetDatatam(c *fiber.Ctx) error {
+	nama := c.Params("nama")
+	data := monitor.GetDatatam(nama)
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func GetDataStatus(c *fiber.Ctx) error {
+	status := c.Params("status")
+	data := monitor.GetDataStatus(status)
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func GetDataKota(c *fiber.Ctx) error {
+	kota := c.Params("kota")
+	data := monitor.GetDataKota(kota)
 	fmt.Println(data)
 	return c.JSON(data)
 }
