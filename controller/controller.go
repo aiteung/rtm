@@ -15,6 +15,7 @@ import (
 	lpkg "github.com/GilarYa/packagertm"
 	monitor "github.com/xshazks/rtmbdsaw"
 	agd "github.com/gabyzanna/rtmbackendbel"
+	listjdk "github.com/FarhanRizkiM/rtmpackage"
 )
 
 var usercol = "data_user"
@@ -390,6 +391,56 @@ func GetDataAgendabel(c *fiber.Ctx) error {
 func GetDataPenjawab(c *fiber.Ctx) error {
 	divisi := c.Params("divisi")
 	data := agd.GetDataPenjawab(divisi)
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+// LIST JOBDESK
+
+func InsertDataListJobdesk(c *fiber.Ctx) error {
+	database := config.MongoConn
+	var lj listjdk.List_Jbdesk
+	if err := c.BodyParser(&lj); err != nil {
+		return err
+	}
+	Inserted := listjdk.InsertDataListJobdesk(database,
+		lj.Jbtitle_LJ,
+		lj.Deskripsi_LJ,
+		lj.Deadline_LJ,
+		lj.Priority_LJ,
+	)
+	fmt.Println(Inserted)
+	return c.JSON(map[string]interface{}{
+		"status":      http.StatusOK,
+		"message":     "Data List Jobdesk berhasil diinputkan.",
+		"inserted_id": Inserted,
+	})
+}
+
+func GetDataListJobdeskDeskripsi(c *fiber.Ctx) error {
+	hp := c.Params("deskripsi_lj")
+	data := listjdk.GetDataListJobdeskDeskripsi(hp, config.MongoConn, "ListJD")
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func GetDataListJobdeskDeadline(c *fiber.Ctx) error {
+	hp := c.Params("deadline_lj")
+	data := listjdk.GetDataListJobdeskDeadline(hp, config.MongoConn, "ListJD")
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func DeleteDataListJobdeskDeskripsi(c *fiber.Ctx) error {
+	hp := c.Params("deskripsi_lj")
+	data := listjdk.DeleteDataListJobdeskDeskripsi(hp, config.MongoConn, "Deletedatalistdeksripsi")
+	fmt.Println(data)
+	return c.JSON(data)
+}
+
+func DeleteDataListJobdeskDeadline(c *fiber.Ctx) error {
+	hp := c.Params("deadline_lj")
+	data := listjdk.DeleteDataListJobdeskDeadline(hp, config.MongoConn, "Deletedatalistdeadline")
 	fmt.Println(data)
 	return c.JSON(data)
 }
