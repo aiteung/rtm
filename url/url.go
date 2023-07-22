@@ -41,4 +41,8 @@ func Web(page *fiber.App) {
 	page.Get("/status", controller.GetDatamonitor)
 	page.Get("/karyawan", controller.GetDatakaryawan)
 	page.Get("/proker", controller.GetDataproker)
+	page.Post("/insertagenda", controller.InsertAgendabel)
+	page.Post("/insertpenjawab", controller.InsertPenjawab)
+	page.Get("/agenda", controller.GetDataAgendabel)
+	page.Get("/penjawab", controller.GetDataPenjawab)
 }
