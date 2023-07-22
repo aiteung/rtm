@@ -16,6 +16,7 @@ import (
 	monitor "github.com/xshazks/rtmbdsaw"
 	agd "github.com/gabyzanna/rtmbackendbel"
 	listjdk "github.com/FarhanRizkiM/rtmpackage"
+	tamu "github.com/Ardivadiva/cobafunc"
 )
 
 var usercol = "data_user"
@@ -443,4 +444,55 @@ func DeleteDataListJobdeskDeadline(c *fiber.Ctx) error {
 	data := listjdk.DeleteDataListJobdeskDeadline(hp, config.MongoConn, "Deletedatalistdeadline")
 	fmt.Println(data)
 	return c.JSON(data)
+}
+
+//tamu
+func Inserttamu(nama string, email string, kota string, status string) (InsertedID interface{}) {
+	var datatamu Tamu
+	datatamu.Nama = nama
+	datatamu.Email = email
+	datatamu.Kota = kota
+	datatamu.Status = status
+	return InsertOneDoc("dblisttamu", "datatamu", datatamu)
+}
+func GetDataNama(nam string) (data []Tamu) {
+	user := MongoConnect("dblisttamu").Collection("datatamu")
+	filter := bson.M{"nama": nam}
+	cursor, err := user.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataNama :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetDataStatus(tus string) (data []Tamu) {
+	user1 := MongoConnect("dblisttamu").Collection("datatamu")
+	filter := bson.M{"status": tus}
+	cursor, err := user1.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataStatus :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetDataKota(kot string) (data []Tamu) {
+	user1 := MongoConnect("dblisttamu").Collection("datatamu")
+	filter := bson.M{"kota": kot}
+	cursor, err := user1.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataKota :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
 }

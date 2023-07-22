@@ -21,6 +21,7 @@ require (
 require (
 	aidanwoods.dev/go-paseto v1.3.0 // indirect
 	filippo.io/edwards25519 v1.0.0 // indirect
+	github.com/Ardivadiva/cobafunc v0.0.8 // indirect
 	github.com/aiteung/atapi v0.0.13 // indirect
 	github.com/aiteung/atmessage v0.0.19 // indirect
 	github.com/aiteung/atmodel v0.0.4 // indirect
